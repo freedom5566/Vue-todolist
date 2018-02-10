@@ -27,7 +27,7 @@
     methods: {
       getData(msg) {
         console.log("App.vue組件:" + msg);
-        this.title = "你剛剛輸入了:" + msg;
+        this.title = "你剛剛輸入了" + msg;
       }
     }
   }
