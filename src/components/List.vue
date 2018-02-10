@@ -2,8 +2,9 @@
 <template>
     <div class="view">
         <h1 class="title">{{ title }}</h1>
+        <input v-model="newStr" @keyup.enter="addData"/>
         <ul>
-            <li v-for="item in items" v-bind:class="{finesh:item.isFineshed}" @click="toggleFinish">
+            <li v-for="item in items" v-bind:class="{finesh:item.isFineshed}" @click="toggleFinish(item)">
                 {{ item.text }}
             </li>
         </ul>
@@ -16,20 +17,34 @@
     data() {
       return {
         title: "TodoList",
-        items: [{
-            text: "run",
-            isFineshed: true
-          },
-          {
-            text: "kobe",
-            isFineshed: false
-          },
+        items: [
+          //     {
+          //
+          //     text: "run",
+          //     isFineshed: true
+          //   },
+          //   {
+          //     text: "kobe",
+          //     isFineshed: false
+          //   },
         ],
+        newStr: ""
       }
     },
     methods: {
-      toggleFinish: function() {
-        console.log(1);
+      toggleFinish: function(item) {
+        item.isFineshed = !item.isFineshed;
+      },
+      addData: function() {
+        // console.log(this.newStr);
+        this.items.push({
+          text: this.newStr,
+          isFineshed: false
+
+        }, );
+        this.$emit("myMsg", this.newStr);
+        //clear
+        this.newStr = "";
       }
     }
 
